@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Playground</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CodeMirror -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css"
+  />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <!-- ======= Top Bar ======= -->
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__icon">⚡</span>
+      <h1 class="topbar__title">Code Playground</h1>
+    </div>
+    <div class="topbar__stats" id="statsBar">
+      <span class="stat" id="statSnippets" title="Saved snippets">📁 0</span>
+      <span class="stat" id="statRuns" title="Total runs">▶ 0</span>
+      <span class="stat" id="statFavs" title="Favorites">⭐ 0</span>
+    </div>
+    <div class="topbar__actions">
+      <button class="btn btn--primary" id="btnNew" title="New snippet">+ New</button>
+    </div>
+  </header>
+
+  <!-- ======= Main Layout ======= -->
+  <div class="app">
+    <!-- Sidebar: snippet list -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <input
+          type="text"
+          class="sidebar__search"
+          id="searchInput"
+          placeholder="Search snippets…"
+        />
+        <div class="sidebar__filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="favorites">⭐ Favorites</button>
+        </div>
+      </div>
+      <ul class="snippet-list" id="snippetList">
+        <!-- populated by JS -->
+      </ul>
+    </aside>
+
+    <!-- Main area -->
+    <main class="main">
+      <!-- Editor Panel -->
+      <section class="panel panel--editor">
+        <div class="panel__header">
+          <div class="panel__title-group">
+            <input
+              type="text"
+              class="snippet-title-input"
+              id="snippetTitle"
+              placeholder="Untitled Snippet"
+              value="Untitled Snippet"
+            />
+            <input
+              type="text"
+              class="snippet-desc-input"
+              id="snippetDesc"
+              placeholder="Add a description…"
+            />
+          </div>
+          <div class="panel__toolbar">
+            <input
+              type="text"
+              class="tag-input"
+              id="tagInput"
+              placeholder="Tags (comma-separated)"
+            />
+            <button class="btn btn--accent" id="btnRun" title="Run code (Ctrl+Enter)">
+              ▶ Run
+            </button>
+            <button class="btn btn--secondary" id="btnSave" title="Save snippet (Ctrl+S)">
+              💾 Save
+            </button>
+            <button class="btn btn--ghost" id="btnFav" title="Toggle favorite">☆</button>
+            <button class="btn btn--danger" id="btnDelete" title="Delete snippet">🗑</button>
+          </div>
+        </div>
+        <div class="editor-wrap" id="editorWrap">
+          <textarea id="codeEditor"></textarea>
+        </div>
+      </section>
+
+      <!-- Output Panel -->
+      <section class="panel panel--output">
+        <div class="panel__header">
+          <span class="panel__label">Console Output</span>
+          <div class="output-meta">
+            <span class="badge" id="durationBadge" title="Execution time"></span>
+            <button class="btn btn--ghost btn--sm" id="btnClearOutput">Clear</button>
+            <button class="btn btn--ghost btn--sm" id="btnHistory">📜 History</button>
+          </div>
+        </div>
+        <pre class="output-console" id="outputConsole"><span class="output-placeholder">Run your code to see the output here…</span></pre>
+      </section>
+    </main>
+  </div>
+
+  <!-- ======= History Modal ======= -->
+  <div class="modal-overlay" id="historyModal">
+    <div class="modal">
+      <div class="modal__header">
+        <h2>Execution History</h2>
+        <button class="btn btn--ghost" id="btnCloseHistory">✕</button>
+      </div>
+      <div class="modal__body" id="historyBody">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Scripts ======= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
