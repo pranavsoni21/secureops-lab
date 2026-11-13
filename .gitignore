@@ -1,0 +1,10 @@
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/crash.log
+**/*.tfplan
+**/tfplan
+**/terraform.tfvars.json
+
+application/node_modules
+application/data

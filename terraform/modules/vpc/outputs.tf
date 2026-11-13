@@ -1,0 +1,15 @@
+
+output "vpc_id" {
+  description = "Created VPC ID"
+  value       = aws_vpc.main.id
+}
+
+output "private_subnet_id" {
+  description = "Created private subnet ID"
+  value       = aws_subnet.private.id
+}
+
+output "vpc_cidr" {
+  description = "VPC CIDR block"
+  value       = aws_vpc.main.cidr_block
+}
